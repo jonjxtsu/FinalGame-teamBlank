@@ -3,9 +3,9 @@ package edu.cpp.cs.cs141.final_prog_assignment;
 import java.util.Random;
 
 public class GameEngine {
-	
+
 	private Random random = new Random();
-	
+
 	private Character player;
 	private Board board;
 	private Character[] ninjas = new Character[6];
@@ -105,45 +105,100 @@ public class GameEngine {
 		return "   ";
 	}
 
-	public void move(String direction) {
+	public boolean move(String direction) {
 		boolean moved = false;
-		while(!moved) {
-			switch(direction){
-				case"w":
-					if(player.getX()>0) {
-						board.set(player, player.getX()-1, player.getY());
-						board.move(player.getX()+1, player.getY());
-						moved = true;
-					}
-					break;
-				case"a":
-					if(player.getY()>0){
-						board.set(player, player.getX(), player.getY()-1);
-						board.move(player.getX(), player.getY()+1);
-						moved = true;
-					}
-					break;
-				case"s":
-					if(player.getX()<8){
-						board.set(player, player.getX()+1, player.getY());
-						board.move(player.getX()-1, player.getY());
-						moved = true;
-					}
-					break;
-				case"d":
-					if(player.getY()<8){
-						board.set(player, player.getX(), player.getY()+1);
-						board.move(player.getX(), player.getY()-1);
-						moved = true;
-					}
-					break;
-				default:
-					moved = true;
-					break;
 
-			}
+		switch(direction){
+			case"w":
+				if((player.getY() == 8 ||
+				player.getX() == 1+1 ||
+				player.getX() == 4+1 ||
+				player.getX() == 7+1) &&
+				(player.getY() == 1 ||
+				player.getY() == 4 ||
+				player.getY() == 7))
+				{
+					System.out.println("WALL!");
+					moved = false;
+
+				}
+
+				else
+				{
+
+					board.set(player, player.getX()-1, player.getY());
+					board.move(player.getX()+1, player.getY());
+					moved = true;
+				}
+
+				break;
+			case"a":
+				if((player.getY() == 0 ||
+						player.getY() == 1+1 ||
+						player.getY() == 4+1 ||
+						player.getY() == 7+1) &&
+						(player.getX() == 1 ||
+						player.getX() == 4 ||
+						player.getX() == 7))
+				{
+					System.out.println("WALL!");
+					moved = false;
+
+				}
+				else
+				{
+					board.set(player, player.getX(), player.getY()-1);
+					board.move(player.getX(), player.getY()+1);
+					moved = true;
+				}
+				break;
+			case"s":
+				if((player.getX() == 8 ||
+						player.getX() == 1 ||
+						player.getX() == 4 ||
+						player.getX() == 7) &&
+						(player.getY() == 1 ||
+						player.getY() == 4 ||
+						player.getY() == 7))
+				{
+					System.out.println("WALL!");
+					moved = false;
+
+				}
+				else
+				{
+					board.set(player, player.getX()+1, player.getY());
+					board.move(player.getX()-1, player.getY());
+					moved = true;
+				}
+				break;
+			case"d":
+				if((player.getY() == 8 ||
+						player.getY() == 1-1 ||
+						player.getY() == 4-1 ||
+						player.getY() == 7-1) &&
+						(player.getX() == 1 ||
+						player.getX() == 4 ||
+						player.getX() == 7))
+				{
+					System.out.println("WALL!");
+					moved = false;
+
+				}
+				else
+				{
+					board.set(player, player.getX(), player.getY()+1);
+					board.move(player.getX(), player.getY()-1);
+					moved = true;
+				}
+				break;
+			default:
+				moved = true;
+				break;
 
 		}
+		return moved;
+
 	}
 	/*	
 	public String shoot(String direction) {
@@ -190,7 +245,7 @@ public class GameEngine {
 				ninjas[i].die();
 		}
 	}
-*/
+	 */
 
 
 }
