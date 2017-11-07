@@ -110,8 +110,8 @@ public class GameEngine {
 
 		switch(direction){
 			case"w":
-				if((player.getY() == 8 ||
-				player.getX() == 1+1 ||
+				if((player.getX() == 0) ||
+				(player.getX() == 1+1 ||
 				player.getX() == 4+1 ||
 				player.getX() == 7+1) &&
 				(player.getY() == 1 ||
@@ -133,8 +133,8 @@ public class GameEngine {
 
 				break;
 			case"a":
-				if((player.getY() == 0 ||
-						player.getY() == 1+1 ||
+				if((player.getY() == 0) ||
+						(player.getY() == 1+1 ||
 						player.getY() == 4+1 ||
 						player.getY() == 7+1) &&
 						(player.getX() == 1 ||
@@ -153,8 +153,8 @@ public class GameEngine {
 				}
 				break;
 			case"s":
-				if((player.getX() == 8 ||
-						player.getX() == 1 ||
+				if((player.getX() == 8) ||
+						(player.getX() == 1 ||
 						player.getX() == 4 ||
 						player.getX() == 7) &&
 						(player.getY() == 1 ||
@@ -173,8 +173,8 @@ public class GameEngine {
 				}
 				break;
 			case"d":
-				if((player.getY() == 8 ||
-						player.getY() == 1-1 ||
+				if((player.getY() == 8) ||
+						(player.getY() == 1-1 ||
 						player.getY() == 4-1 ||
 						player.getY() == 7-1) &&
 						(player.getX() == 1 ||
